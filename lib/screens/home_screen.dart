@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'event_details_screen.dart';
 import 'profile_screen.dart';
+import 'my_registrations_screen.dart';
+import 'signup_screen.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -17,6 +19,17 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: ListView(
           children: [
+            ElevatedButton(
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const MyRegistrationsScreen(),
+      ),
+    );
+  },
+  child: const Text("View Registrations"),
+),
             Container(
   width: double.infinity,
   padding: const EdgeInsets.all(20),
@@ -208,9 +221,16 @@ SizedBox(height: 20),
         title: Text(title),
         subtitle: Text(date),
         trailing: ElevatedButton(
-          onPressed: () {},
-          child: const Text("Register"),
-        ),
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const SignupScreen(),
+      ),
+    );
+  },
+  child: const Text("Sign Up"),
+),
       ),
     );
   }

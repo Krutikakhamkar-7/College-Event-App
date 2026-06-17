@@ -34,7 +34,7 @@ class ProfileScreen extends StatelessWidget {
             SizedBox(height: 10),
 
             Text(
-              "Computer Science Department",
+              "IT Department",
             ),
 
             SizedBox(height: 30),
