@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           children: [
             TextField(
               controller: nameController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "Full Name",
                 border: OutlineInputBorder(),
               ),
@@ -38,7 +39,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
             TextField(
               controller: emailController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "Email",
                 border: OutlineInputBorder(),
               ),
@@ -48,7 +49,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
             TextField(
               controller: departmentController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "Department",
                 border: OutlineInputBorder(),
               ),
@@ -58,7 +59,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
             TextField(
               controller: yearController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "Year",
                 border: OutlineInputBorder(),
               ),
@@ -70,33 +71,50 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () async {
-                  await FirebaseFirestore.instance
-                      .collection('registrations')
-                      .add({
-                    'name': nameController.text,
-                    'email': emailController.text,
-                    'department': departmentController.text,
-                    'year': yearController.text,
-                    'timestamp': FieldValue.serverTimestamp(),
-                  });
+                  try {
+                    await FirebaseFirestore.instance
+                        .collection('registrations')
+                        .add({
+                      'uid': FirebaseAuth.instance.currentUser!.uid,
+                      'name': nameController.text.trim(),
+                      'email': emailController.text.trim(),
+                      'department': departmentController.text.trim(),
+                      'year': yearController.text.trim(),
+                      'timestamp': FieldValue.serverTimestamp(),
+                    });
 
-                  showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: const Text("Registration Successful 🎉"),
-                      content: const Text(
-                        "You have successfully registered for this event.",
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text("OK"),
+                    if (!mounted) return;
+                    nameController.clear();
+                    emailController.clear();
+                    departmentController.clear();
+                    yearController.clear();
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: const Text("Registration Successful 🎉"),
+                        content: const Text(
+                          "You have successfully registered for this event.",
                         ),
-                      ],
-                    ),
-                  );
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                            },
+                            child: const Text("OK"),
+                          ),
+                        ],
+                      ),
+                    );
+                  } catch (e) {
+                    print(e);
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("Error: $e"),
+                      ),
+                    );
+                  }
                 },
                 child: const Text("Register"),
               ),

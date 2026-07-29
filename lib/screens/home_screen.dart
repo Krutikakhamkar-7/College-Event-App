@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'event_details_screen.dart';
 import 'profile_screen.dart';
 import 'my_registrations_screen.dart';
-import 'signup_screen.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -37,7 +36,7 @@ class HomePage extends StatelessWidget {
     color: Colors.deepPurple,
     borderRadius: BorderRadius.circular(20),
   ),
-  child: const Column(
+  child: Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text(
@@ -47,7 +46,7 @@ class HomePage extends StatelessWidget {
           fontSize: 14,
         ),
       ),
-      SizedBox(height: 10),
+      const SizedBox(height: 20),
       Text(
         "National Hackathon 2026",
         style: TextStyle(
@@ -68,17 +67,15 @@ class HomePage extends StatelessWidget {
 ),
 
 const SizedBox(height: 25),
-            SizedBox(height: 20),
-
+SizedBox(height: 20),
 TextField(
-  decoration: InputDecoration(
+  decoration: const InputDecoration(
     hintText: "Search events...",
     prefixIcon: Icon(Icons.search),
   ),
 ),
 
-SizedBox(height: 20),
-
+const SizedBox(height: 20),
 Container(
   height: 180,
   decoration: BoxDecoration(
@@ -92,8 +89,7 @@ Container(
   ),
 ),
 
-SizedBox(height: 20),
-
+const SizedBox(height: 20),
             const Text(
               "Upcoming Events",
               style: TextStyle(
@@ -165,16 +161,29 @@ SizedBox(height: 20),
       ),
 
      bottomNavigationBar: BottomNavigationBar(
-  onTap: (index) {
-    if (index == 2) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const ProfileScreen(),
+      currentIndex: 0,
+onTap: (index) {
+  if (index == 0) {
+    // Home
+  } else if (index == 1) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EventDetailsScreen(
+          title: "Hackathon 2026",
+          date: "15 June 2026",
         ),
-      );
-    }
-  },
+      ),
+    );
+  } else if (index == 2) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ProfileScreen(),
+      ),
+    );
+  }
+},
   items: const [
     BottomNavigationBarItem(
       icon: Icon(Icons.home),
@@ -182,7 +191,7 @@ SizedBox(height: 20),
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.event),
-      label: "Events",
+      label: "All Events",
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.person),
@@ -202,7 +211,25 @@ SizedBox(height: 20),
     return Card(
       margin: const EdgeInsets.only(bottom: 15),
       child: ListTile(
-  onTap: () {
+onTap: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => EventDetailsScreen(
+        title: title,
+        date: date,
+      ),
+    ),
+  );
+},
+  leading: Icon(
+    icon,
+    size: 40,
+  ),
+        title: Text(title),
+        subtitle: Text(date),
+trailing: ElevatedButton(
+  onPressed: () {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -213,24 +240,7 @@ SizedBox(height: 20),
       ),
     );
   },
-
-  leading: Icon(
-    icon,
-    size: 40,
-  ),
-        title: Text(title),
-        subtitle: Text(date),
-        trailing: ElevatedButton(
-  onPressed: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const SignupScreen(),
-      ),
-    );
-  },
-  child: const Text("Sign Up"),
-),
+child: const Text("Register"),),
       ),
     );
   }
