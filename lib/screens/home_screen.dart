@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
 Widget build(BuildContext context) {
   return Scaffold(
     backgroundColor: const Color(0xffF6F5FB),
+
     appBar: AppBar(
       elevation: 0,
       backgroundColor: Colors.transparent,
@@ -19,8 +20,8 @@ Widget build(BuildContext context) {
       title: const Text(
         "College Events",
         style: TextStyle(
-          fontWeight: FontWeight.bold,
           fontSize: 24,
+          fontWeight: FontWeight.bold,
         ),
       ),
     ),
@@ -29,7 +30,6 @@ Widget build(BuildContext context) {
       padding: const EdgeInsets.all(18),
       children: [
 
-        /// View Registrations
         SizedBox(
           width: double.infinity,
           height: 50,
@@ -41,11 +41,6 @@ Widget build(BuildContext context) {
                 borderRadius: BorderRadius.circular(15),
               ),
             ),
-            icon: const Icon(Icons.assignment),
-            label: const Text(
-              "View My Registrations",
-              style: TextStyle(fontSize: 16),
-            ),
             onPressed: () {
               Navigator.push(
                 context,
@@ -54,12 +49,16 @@ Widget build(BuildContext context) {
                 ),
               );
             },
+            icon: const Icon(Icons.assignment),
+            label: const Text(
+              "View My Registrations",
+              style: TextStyle(fontSize: 16),
+            ),
           ),
         ),
 
         const SizedBox(height: 20),
 
-        /// Search Bar
         TextField(
           decoration: InputDecoration(
             hintText: "Search Events...",
@@ -75,7 +74,6 @@ Widget build(BuildContext context) {
 
         const SizedBox(height: 25),
 
-        /// Hero Banner
         Container(
           padding: const EdgeInsets.all(22),
           decoration: BoxDecoration(
@@ -110,37 +108,52 @@ Widget build(BuildContext context) {
                 ),
               ),
 
+              SizedBox(height: 12),
+
+              Row(
+                children: [
+                  Icon(Icons.calendar_month,
+                      color: Colors.white, size: 18),
+                  SizedBox(width: 8),
+                  Text(
+                    "15 August 2026",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+
               SizedBox(height: 10),
 
-              Text(
-                "📅 15 August 2026",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
+              Row(
+                children: [
+                  Icon(Icons.location_on,
+                      color: Colors.white, size: 18),
+                  SizedBox(width: 8),
+                  Text(
+                    "PCCOE, Pune",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
               ),
 
-              SizedBox(height: 6),
+              SizedBox(height: 10),
 
-              Text(
-                "📍 PCCOE, Pune",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
+              Row(
+                children: [
+                  Icon(Icons.emoji_events,
+                      color: Colors.amber, size: 20),
+                  SizedBox(width: 8),
+                  Text(
+                    "Prize Pool ₹50,000",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
               ),
 
-              SizedBox(height: 6),
+              SizedBox(height: 18),
 
               Text(
-                "🏅 Prize Pool ₹50,000",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-
-              SizedBox(height: 15),
-
-              Text(
-                "Showcase your coding skills, build innovative solutions and win exciting prizes!",
+                "Showcase your coding skills, build innovative projects and win exciting prizes.",
                 style: TextStyle(
                   color: Colors.white,
                   height: 1.5,
@@ -161,45 +174,90 @@ Widget build(BuildContext context) {
         ),
 
         const SizedBox(height: 18),
-eventCard(
-  context,
-  "National Hackathon 2026",
-  "15 August 2026",
-  Icons.code,
-  Colors.deepPurple,
-),
 
-const SizedBox(height: 15),
+        eventCard(
+          context,
+          "National Hackathon 2026",
+          "15 August 2026",
+          Icons.code,
+          Colors.deepPurple,
+        ),
 
-eventCard(
-  context,
-  "AI Workshop",
-  "20 August 2026",
-  Icons.smart_toy,
-  Colors.blue,
-),
+        const SizedBox(height: 15),
 
-const SizedBox(height: 15),
+        eventCard(
+          context,
+          "AI Workshop",
+          "20 August 2026",
+          Icons.smart_toy,
+          Colors.blue,
+        ),
 
-eventCard(
-  context,
-  "Tech Fest",
-  "25 August 2026",
-  Icons.computer,
-  Colors.orange,
-),
+        const SizedBox(height: 15),
 
-const SizedBox(height: 15),
+        eventCard(
+          context,
+          "Tech Fest",
+          "25 August 2026",
+          Icons.computer,
+          Colors.orange,
+        ),
 
-eventCard(
-  context,
-  "Coding Contest",
-  "30 August 2026",
-  Icons.laptop_mac,
-  Colors.green,
-),
+        const SizedBox(height: 15),
 
-const SizedBox(height: 20),
+        eventCard(
+          context,
+          "Coding Contest",
+          "30 August 2026",
+          Icons.laptop_mac,
+          Colors.green,
+        ),
+
+        const SizedBox(height: 20),
+
+      ],
+    ),
+
+    bottomNavigationBar: BottomNavigationBar(
+      currentIndex: 0,
+      selectedItemColor: Colors.deepPurple,
+      onTap: (index) {
+        if (index == 1) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => EventDetailsScreen(
+                title: "Hackathon 2026",
+                date: "15 August 2026",
+              ),
+            ),
+          );
+        } else if (index == 2) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const ProfileScreen(),
+            ),
+          );
+        }
+      },
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: "Home",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.event),
+          label: "Events",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: "Profile",
+        ),
+      ],
+    ),
+  );
+}
 Widget eventCard(
   BuildContext context,
   String title,
@@ -207,47 +265,49 @@ Widget eventCard(
   IconData icon,
   Color color,
 ) {
-  return InkWell(
-    borderRadius: BorderRadius.circular(20),
-    onTap: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => EventDetailsScreen(
-            title: title,
-            date: date,
+  return Card(
+    elevation: 8,
+    margin: const EdgeInsets.only(bottom: 10),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+    ),
+    child: InkWell(
+      borderRadius: BorderRadius.circular(20),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => EventDetailsScreen(
+              title: title,
+              date: date,
+            ),
           ),
-        ),
-      );
-    },
-    child: Card(
-      elevation: 8,
-      shadowColor: color.withOpacity(0.3),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
+        );
+      },
       child: Padding(
         padding: const EdgeInsets.all(18),
         child: Row(
           children: [
-
-            CircleAvatar(
-              radius: 30,
-              backgroundColor: color.withOpacity(0.15),
+            Container(
+              height: 65,
+              width: 65,
+              decoration: BoxDecoration(
+                color: color.withOpacity(0.12),
+                borderRadius: BorderRadius.circular(18),
+              ),
               child: Icon(
                 icon,
                 color: color,
-                size: 30,
+                size: 34,
               ),
             ),
 
-            const SizedBox(width: 18),
+            const SizedBox(width: 16),
 
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   Text(
                     title,
                     style: const TextStyle(
@@ -262,12 +322,10 @@ Widget eventCard(
                     children: [
                       const Icon(
                         Icons.calendar_today,
-                        size: 16,
+                        size: 15,
                         color: Colors.grey,
                       ),
-
-                      const SizedBox(width: 5),
-
+                      const SizedBox(width: 6),
                       Text(
                         date,
                         style: const TextStyle(
@@ -277,12 +335,43 @@ Widget eventCard(
                     ],
                   ),
 
+                  const SizedBox(height: 8),
+
+                  Row(
+                    children: const [
+                      Icon(
+                        Icons.location_on,
+                        size: 15,
+                        color: Colors.red,
+                      ),
+                      SizedBox(width: 6),
+                      Text(
+                        "PCCOE, Pune",
+                        style: TextStyle(
+                          color: Colors.black54,
+                        ),
+                      ),
+                    ],
+                  ),
+
                   const SizedBox(height: 10),
 
-                  const Text(
-                    "Open for all engineering students",
-                    style: TextStyle(
-                      color: Colors.black54,
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 5,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.green.shade100,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: const Text(
+                      "Registration Open",
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
                     ),
                   ),
                 ],
@@ -293,6 +382,10 @@ Widget eventCard(
               style: ElevatedButton.styleFrom(
                 backgroundColor: color,
                 foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 18,
+                  vertical: 12,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -308,11 +401,12 @@ Widget eventCard(
                   ),
                 );
               },
-              child: const Text("View"),
+              child: const Text("Register"),
             ),
           ],
         ),
       ),
     ),
   );
+}
 }
