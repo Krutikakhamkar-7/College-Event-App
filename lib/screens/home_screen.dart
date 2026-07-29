@@ -7,241 +7,312 @@ import 'my_registrations_screen.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("College Events"),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: ListView(
-          children: [
-            ElevatedButton(
-  onPressed: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const MyRegistrationsScreen(),
-      ),
-    );
-  },
-  child: const Text("View Registrations"),
-),
-            Container(
-  width: double.infinity,
-  padding: const EdgeInsets.all(20),
-  decoration: BoxDecoration(
-    color: Colors.deepPurple,
-    borderRadius: BorderRadius.circular(20),
-  ),
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        "FEATURED EVENT",
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: const Color(0xffF6F5FB),
+    appBar: AppBar(
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      foregroundColor: Colors.black,
+      centerTitle: true,
+      title: const Text(
+        "College Events",
         style: TextStyle(
-          color: Colors.white70,
-          fontSize: 14,
-        ),
-      ),
-      const SizedBox(height: 20),
-      Text(
-        "National Hackathon 2026",
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 24,
           fontWeight: FontWeight.bold,
+          fontSize: 24,
         ),
       ),
-      SizedBox(height: 8),
-      Text(
-        "Win prizes, showcase skills and get internship opportunities.",
-        style: TextStyle(
-          color: Colors.white,
-        ),
-      ),
-    ],
-  ),
-),
-
-const SizedBox(height: 25),
-SizedBox(height: 20),
-TextField(
-  decoration: const InputDecoration(
-    hintText: "Search events...",
-    prefixIcon: Icon(Icons.search),
-  ),
-),
-
-const SizedBox(height: 20),
-Container(
-  height: 180,
-  decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(20),
-    gradient: LinearGradient(
-      colors: [
-        Colors.deepPurple,
-        Colors.purple,
-      ],
     ),
-  ),
-),
 
-const SizedBox(height: 20),
-            const Text(
-              "Upcoming Events",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+    body: ListView(
+      padding: const EdgeInsets.all(18),
+      children: [
+
+        /// View Registrations
+        SizedBox(
+          width: double.infinity,
+          height: 50,
+          child: ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.deepPurple,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
               ),
             ),
+            icon: const Icon(Icons.assignment),
+            label: const Text(
+              "View My Registrations",
+              style: TextStyle(fontSize: 16),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const MyRegistrationsScreen(),
+                ),
+              );
+            },
+          ),
+        ),
 
-            const SizedBox(height: 20),
-              Container(
-  height: 180,
-  decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(20),
-    gradient: const LinearGradient(
-      colors: [
-        Colors.deepPurple,
-        Colors.purple,
-      ],
-    ),
-  ),
-  child: const Padding(
-    padding: EdgeInsets.all(20),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Hackathon 2026",
+        const SizedBox(height: 20),
+
+        /// Search Bar
+        TextField(
+          decoration: InputDecoration(
+            hintText: "Search Events...",
+            prefixIcon: const Icon(Icons.search),
+            filled: true,
+            fillColor: Colors.white,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(18),
+              borderSide: BorderSide.none,
+            ),
+          ),
+        ),
+
+        const SizedBox(height: 25),
+
+        /// Hero Banner
+        Container(
+          padding: const EdgeInsets.all(22),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+            gradient: const LinearGradient(
+              colors: [
+                Color(0xff5B2EFF),
+                Color(0xffA100FF),
+              ],
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+
+              Text(
+                "🏆 FEATURED EVENT",
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              SizedBox(height: 15),
+
+              Text(
+                "National Hackathon 2026",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              SizedBox(height: 10),
+
+              Text(
+                "📅 15 August 2026",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+
+              SizedBox(height: 6),
+
+              Text(
+                "📍 PCCOE, Pune",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+
+              SizedBox(height: 6),
+
+              Text(
+                "🏅 Prize Pool ₹50,000",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+
+              SizedBox(height: 15),
+
+              Text(
+                "Showcase your coding skills, build innovative solutions and win exciting prizes!",
+                style: TextStyle(
+                  color: Colors.white,
+                  height: 1.5,
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        const SizedBox(height: 30),
+
+        const Text(
+          "Upcoming Events",
           style: TextStyle(
-            color: Colors.white,
-            fontSize: 28,
+            fontSize: 26,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 10),
-        Text(
-          "Join the biggest coding event of the year!",
-          style: TextStyle(
-            color: Colors.white70,
-            fontSize: 16,
-          ),
-        ),
-      ],
-    ),
-  ),
+
+        const SizedBox(height: 18),
+eventCard(
+  context,
+  "National Hackathon 2026",
+  "15 August 2026",
+  Icons.code,
+  Colors.deepPurple,
 ),
-            eventCard(
-              context,
-              "Hackathon 2026",
-              "15 June 2026",
-              Icons.code,
-            ),
 
-            eventCard(
-              context,
-              "Tech Fest",
-              "20 June 2026",
-              Icons.computer,
-            ),
+const SizedBox(height: 15),
 
-            eventCard(
-              context,
-              "AI Workshop",
-              "25 June 2026",
-              Icons.smart_toy,
-            ),
-          ],
-        ),
-      ),
-
-     bottomNavigationBar: BottomNavigationBar(
-      currentIndex: 0,
-onTap: (index) {
-  if (index == 0) {
-    // Home
-  } else if (index == 1) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => EventDetailsScreen(
-          title: "Hackathon 2026",
-          date: "15 June 2026",
-        ),
-      ),
-    );
-  } else if (index == 2) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const ProfileScreen(),
-      ),
-    );
-  }
-},
-  items: const [
-    BottomNavigationBarItem(
-      icon: Icon(Icons.home),
-      label: "Home",
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.event),
-      label: "All Events",
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.person),
-      label: "Profile",
-    ),
-  ],
+eventCard(
+  context,
+  "AI Workshop",
+  "20 August 2026",
+  Icons.smart_toy,
+  Colors.blue,
 ),
-    );
-  }
 
- Widget eventCard(
+const SizedBox(height: 15),
+
+eventCard(
+  context,
+  "Tech Fest",
+  "25 August 2026",
+  Icons.computer,
+  Colors.orange,
+),
+
+const SizedBox(height: 15),
+
+eventCard(
+  context,
+  "Coding Contest",
+  "30 August 2026",
+  Icons.laptop_mac,
+  Colors.green,
+),
+
+const SizedBox(height: 20),
+Widget eventCard(
   BuildContext context,
   String title,
   String date,
   IconData icon,
+  Color color,
 ) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 15),
-      child: ListTile(
-onTap: () {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => EventDetailsScreen(
-        title: title,
-        date: date,
+  return InkWell(
+    borderRadius: BorderRadius.circular(20),
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => EventDetailsScreen(
+            title: title,
+            date: date,
+          ),
+        ),
+      );
+    },
+    child: Card(
+      elevation: 8,
+      shadowColor: color.withOpacity(0.3),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(18),
+        child: Row(
+          children: [
+
+            CircleAvatar(
+              radius: 30,
+              backgroundColor: color.withOpacity(0.15),
+              child: Icon(
+                icon,
+                color: color,
+                size: 30,
+              ),
+            ),
+
+            const SizedBox(width: 18),
+
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.calendar_today,
+                        size: 16,
+                        color: Colors.grey,
+                      ),
+
+                      const SizedBox(width: 5),
+
+                      Text(
+                        date,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  const Text(
+                    "Open for all engineering students",
+                    style: TextStyle(
+                      color: Colors.black54,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: color,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => EventDetailsScreen(
+                      title: title,
+                      date: date,
+                    ),
+                  ),
+                );
+              },
+              child: const Text("View"),
+            ),
+          ],
+        ),
       ),
     ),
   );
-},
-  leading: Icon(
-    icon,
-    size: 40,
-  ),
-        title: Text(title),
-        subtitle: Text(date),
-trailing: ElevatedButton(
-  onPressed: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => EventDetailsScreen(
-          title: title,
-          date: date,
-        ),
-      ),
-    );
-  },
-child: const Text("Register"),),
-      ),
-    );
-  }
 }
