@@ -1,1 +1,39 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"college-event-app-f2e41","appId":"1:923673650363:android:1cde5a07173ed4f906f59e","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"college-event-app-f2e41","configurations":{"android":"1:923673650363:android:1cde5a07173ed4f906f59e","ios":"1:923673650363:ios:3e6278a1c401ff9406f59e","macos":"1:923673650363:ios:3e6278a1c401ff9406f59e","web":"1:923673650363:web:9da8815a4a48e8a006f59e","windows":"1:923673650363:web:b58e5d5935f9d52706f59e"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "college-event-app-f2e41",
+          "appId": "1:923673650363:android:1cde5a07173ed4f906f59e",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "college-event-app-f2e41",
+          "configurations": {
+            "android": "1:923673650363:android:1cde5a07173ed4f906f59e",
+            "ios": "1:923673650363:ios:3e6278a1c401ff9406f59e",
+            "macos": "1:923673650363:ios:3e6278a1c401ff9406f59e",
+            "web": "1:923673650363:web:9da8815a4a48e8a006f59e",
+            "windows": "1:923673650363:web:b58e5d5935f9d52706f59e"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
